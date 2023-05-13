@@ -18,13 +18,9 @@ max_kp = 0
 
 orb = cv2.ORB_create()
 
-test_img = cv2.imread('./face/100_gandhi.jpg')
+x = input("Enter image path: ")
 
-# original=cv2.resize(test_img, None, fx=0.4, fy=0.4, interpolation = cv2.INTER_AREA)
-
-# cv2.imshow('img',original)
-# cv2.waitKey(0)
-# cv2.destroyAllWindows()
+test_img = cv2.imread(x)
 
 (kp1, des1) = orb.detectAndCompute(test_img, None)
 

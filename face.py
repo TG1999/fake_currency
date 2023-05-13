@@ -1,6 +1,7 @@
 from matplotlib import pyplot as plt
 import cv2
-image = cv2.imread('new_test.jpeg')
+x = input("PLEASE ENTER IMAGE PATH: ")
+image = cv2.imread(x)
 faceCascade = cv2.CascadeClassifier('file.xml')
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 faces = faceCascade.detectMultiScale(
@@ -44,6 +45,7 @@ point_of_interest=(max_pt-5)/iteration
 if max_val > 50 :
     print(training_set[int(point_of_interest)-1])
     print('good matches ', max_val)
+    print("CURRENCY MIGHT BE REAL, PLEASE CHECK FOR OTHER STEPS")
     cv2.rectangle(image, (rectangledrawer['x'], rectangledrawer['y']), (rectangledrawer['x']+rectangledrawer['w'], rectangledrawer['y']+rectangledrawer['h']), (0, 255, 0), 2)
     cv2.imshow("Faces found", image)
     cv2.waitKey(0)
@@ -51,10 +53,9 @@ if max_val > 50 :
     img3 = cv2.drawMatchesKnn(roi_color, kp1, train_img, max_kp, good, 4)
     note = str(training_set[int(point_of_interest)-1]).split('.')
     note=note[0]
-    print('\nDetected denomination: Rs. ', note)
     (plt.imshow(img3), plt.show())
+    plt.close()
 else:
-    image = cv2.imread('test_gandhi.jpeg')
     cv2.imshow("img",image)
     cv2.waitKey(0)
-    print('No portrait found')
+    print("NO PORTRAIT DETECTED: CURRENCY MIGHT BE FAKE")

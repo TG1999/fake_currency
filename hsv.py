@@ -13,7 +13,9 @@ import cv2
 
 import operator
 
-img2 = cv2.imread('500_real.jpg')
+x = input("Enter image path: ")
+
+img2 = cv2.imread(x)
 
 cv2.imshow('img3',img2)
 cv2.waitKey(0)
@@ -85,6 +87,10 @@ print(imp_point)
 for i in kps:
     if i.pt[0]//10 in imp_point:
         point.append(i)
+if not point:
+    print("NO STRIPS DETECTED: CURRENCY MIGHT BE FAKE")
+else:
+    print("CURRENCY MIGHT BE REAL, PLEASE CHECK FOR OTHER STEPS")
 img3 = cv2.drawKeypoints(gray,point,None,(255,0,0),4)
 
 cv2.imshow('img3',img3)
